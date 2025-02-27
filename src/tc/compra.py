@@ -1,4 +1,5 @@
-from tc import cuota
+
+from src.tc import cuota
 
 
 class compra:
