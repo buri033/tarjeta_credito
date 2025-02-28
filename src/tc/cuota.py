@@ -1,4 +1,4 @@
-class cuota:
+class Cuota:
     def __init__(self, numero:int, valor:float, valor_capital:float, valor_interes:float):
         self.__numero = numero
         self.__valor = valor

@@ -1,8 +1,8 @@
 
-from src.tc import cuota
+from src.tc import Cuota
 
 
-class compra:
+class Compra:
     def __init__(self, tasa:float, valor:float, cuotas:int):
        self.__tasa = tasa
        self.__valor = valor
@@ -29,22 +29,22 @@ class compra:
     def get_numero_cuotas(self)->int:
         return self.__numero_cuotas
     
-    def __calcular_cuota(self)->float:
+    def calcular_cuota(self)->float:
         return (self.__valor*self.__tasa)/(1-(1+self.__tasa)**(-self.__numero_cuotas))
     
-    def __calcular_intereses(self)->float:
-        cuota = self.__calcular_cuota()
+    def calcular_intereses(self)->float:
+        cuota = self.calcular_cuota()
         return (cuota*self.__numero_cuotas)-self.__valor
-    
-    
-    def calcular_plan_amortizacion(self)->list[cuota]:
+
+
+    def calcular_plan_amortizacion(self)->list[Cuota]:
         plan = []
         saldo = self.__valor
         valor_cuota = self.__calcular_cuota()
         for i in range(self.__numero_cuotas):
             AI = saldo*self.__tasa
             AC = valor_cuota - AI
-            cuota_i = cuota(i,valor_cuota, AI, AC)
+            cuota_i = Cuota(i,valor_cuota, AI, AC)
             saldo = saldo - valor_cuota
             plan.append(cuota_i)
         
